@@ -2,8 +2,8 @@ const Navbar = () => {
   return (
     <div className="flex justify-between items-center border-b border-gray-100 w-full py-2">
       <div className="text-3xl font-extrabold text-gray-900 dark:text-white font-roboto">
-        <span className="text-transparent bg-clip-text bg-gradient-to-r to-pink-600 from-blue-400">
-          Language App
+        <span className="text-transparent bg-clip-text bg-gradient-to-r to-red-600 from-green-500">
+          ТатарЛинго
         </span>
       </div>
 
@@ -11,22 +11,22 @@ const Navbar = () => {
         <ul className="flex space-x-4">
           <li>
             <a href="/" className="text-black">
-              User Profile
+              Профиль
             </a>
           </li>
           <li>
             <a href="/dialog" className="text-black">
-              Dialogs
+              Диалоги
             </a>
           </li>
           <li>
             <a href="/create" className="text-black">
-              Create Dialog
+              Создать Диалог
             </a>
           </li>
           <li>
             <a href="/word" className="text-black">
-              Words
+              Слова
             </a>
           </li>
         </ul>
