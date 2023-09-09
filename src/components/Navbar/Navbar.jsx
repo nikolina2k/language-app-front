@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 
-const Navbar = ({}) => {
+const Navbar = () => {
   const location = useLocation();
 
   const isLinkActive = (path) => {

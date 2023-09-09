@@ -10,7 +10,7 @@ import ChatRoom from "./components/Dialogs/Chat";
 function App() {
   return (
     <Router>
-      <div className="mx-auto max-w-screen-lg">
+      <div className="mx-auto max-w-screen-md">
         <Navbar />
         <Routes>
           <Route path="/" exact Component={Home} />
