@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
 const wordsData = [
     {
@@ -46,7 +46,8 @@ const Words= () => {
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
     const [correctAnswers, setCorrectAnswers] = useState(0);
     const [incorrectWords, setIncorrectWords] = useState([]);
-    const [showAnswer, setShowAnswer] = useState(false);
+    const [result, setResult] = useState(null); // Track result
+    const [showResults, setShowResults] = useState(false); // Track result
 
     if (!categoryWords) {
         return <div className="text-red-600">Category not found</div>;
@@ -61,26 +62,34 @@ const Words= () => {
     const handleCheckAnswer = () => {
         if (selectedImageIndex === currentWord.correctImage) {
             setCorrectAnswers(correctAnswers + 1);
-            setShowAnswer('Correct');
+            setResult('Correct'); // Set the result to 'Correct'
         } else {
             setIncorrectWords([...incorrectWords, currentWord.word]);
-            setShowAnswer('Incorrect');
+            setResult('Incorrect'); // Set the result to 'Incorrect'
         }
     };
 
     const handleNextWord = () => {
+        console.log("Index: "+currentWordIndex + " total: "+ categoryWords.words.length)
         if (currentWordIndex + 1 < categoryWords.words.length) {
             setCurrentWordIndex(currentWordIndex + 1);
             setSelectedImageIndex(null);
-            setShowAnswer(false);
+            setResult(null); // Reset the result
+        } else {
+            // If it's the last word, show results
+            setShowResults(true);
         }
     };
 
     const totalWords = categoryWords.words.length;
 
+    function handleShowResults() {
+        setShowResults(true);
+    }
+
     return (
         <div className="max-w-screen-lg mx-auto p-4">
-            {currentWordIndex < totalWords ? (
+            {currentWordIndex < totalWords && !showResults ? (
                 <>
                     <h2 className="text-2xl font-semibold mb-4">{currentWord.word}</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -90,11 +99,11 @@ const Words= () => {
                                 className={`bg-white p-4 rounded-lg shadow-md cursor-pointer ${
                                     selectedImageIndex === index ? 'border-2 border-blue-500' : ''
                                 } ${
-                                    showAnswer === 'Correct' && index === currentWord.correctImage
+                                    result === 'Correct' && index === currentWord.correctImage
                                         ? 'border-2 border-green-500'
                                         : ''
                                 } ${
-                                    showAnswer === 'Incorrect' && index === selectedImageIndex
+                                    result === 'Incorrect' && index === selectedImageIndex
                                         ? 'border-2 border-red-500'
                                         : ''
                                 }`}
@@ -109,7 +118,7 @@ const Words= () => {
                             </div>
                         ))}
                     </div>
-                    {!showAnswer && selectedImageIndex !== null && (
+                    {!result && selectedImageIndex !== null && (
                         <div className="mt-4">
                             <button
                                 onClick={handleCheckAnswer}
@@ -119,21 +128,30 @@ const Words= () => {
                             </button>
                         </div>
                     )}
-                    {showAnswer && (
+                    {result && (
                         <div className="mt-4">
                             <p
                                 className={`text-lg font-semibold ${
-                                    showAnswer === 'Correct' ? 'text-green-500' : 'text-red-500'
+                                    result === 'Correct' ? 'text-green-500' : 'text-red-500'
                                 }`}
                             >
-                                {showAnswer}
+                                {result}
                             </p>
-                            <button
-                                onClick={handleNextWord}
-                                className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full"
-                            >
-                                Next Word
-                            </button>
+                            {currentWordIndex + 1 < totalWords ? (
+                                <button
+                                    onClick={handleNextWord}
+                                    className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full"
+                                >
+                                    Next Word
+                                </button>
+                            ) : (
+                                <button
+                                    onClick={handleShowResults}
+                                    className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full"
+                                >
+                                    Show Results
+                                </button>
+                            )}
                         </div>
                     )}
                 </>
@@ -152,14 +170,15 @@ const Words= () => {
                         </div>
                     )}
                     <Link
-                        to="/"
+                        to="/word"
                         className="mt-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full"
                     >
-                        Go Home
+                        Вернуться обратно
                     </Link>
                 </div>
             )}
         </div>
     );
 };
+
 export default Words;
