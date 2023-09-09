@@ -1,8 +1,12 @@
+import { useContext } from "react";
 import streakIcon from "../assets/streak_icon.svg";
 import ProfileCard from "./Profile/ProfileCard";
 import ProgressBar from "./Profile/ProgressBar";
+import { ProgressContext } from "./context";
 
 const Home = () => {
+
+    const {level, progress, maxProgress} = useContext(ProgressContext);
     return (
         <div
             className="h-screen py-10 px-8"
@@ -19,10 +23,10 @@ const Home = () => {
                 </div>
             </div>
             <div className="flex flex-col items-start">
-                <p style={{ fontSize: "36px" }}>Lvl 54</p>
-                <ProgressBar maxValue={250} currentValue={120}/>
+                <p style={{ fontSize: "36px" }}>Уровень {level}</p>
+                <ProgressBar maxValue={maxProgress} currentValue={progress}/>
                 <p style={{ fontSize: "18px" }}>
-                    120/250 XP until the next level
+                    {progress}/{maxProgress} XP до следующего уровня
                 </p>
             </div>
             <div className="flex flex-col mt-20" style={{gap:'25px'}}>
