@@ -6,7 +6,7 @@ const SingleDialog = ({ id, title, description, voteCount }) => {
   return (
     <Link to={`/chat/${id}`}>
       <li className="mb-4 border p-7 flex items-center justify-between hover:shadow-lg cursor-pointer rounded-xl transition duration-300 ease-in-out transform hover:scale-105">
-        <div className="hover:shadow-lg cursor-pointer grid grid-cols-1">
+        <div className="cursor-pointer grid grid-cols-1">
           <div className="flex flex-col items-start">
             <h3 className="text-lg font-semibold">{title}</h3>
             <p className="text-gray-600">{description}</p>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from "react";
 import {Link, useParams} from "react-router-dom";
 
 const wordsData = [
@@ -111,7 +111,7 @@ const Words= () => {
                                 <img
                                     src={image}
                                     alt={`Image ${index + 1}`}
-                                    className="w-36 h-36 object-cover rounded-full mx-auto mb-2"
+                                    className="w-full rounded-lg h-full object-cover mx-auto mb-2"
                                 />
                             </div>
                         ))}
