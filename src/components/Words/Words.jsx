@@ -111,7 +111,7 @@ const Words= () => {
                                 <img
                                     src={image}
                                     alt={`Image ${index + 1}`}
-                                    className="w-36 h-36 object-cover rounded-full mx-auto mb-2"
+                                    className="w-30 h-30 object-cover mx-auto mb-2"
                                 />
                             </div>
                         ))}
