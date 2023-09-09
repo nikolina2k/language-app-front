@@ -53,7 +53,7 @@ const ChatRoom = () => {
       // Simulate computer's response
       const computerMessage = {
         id: 'computer',
-        text: 'Thank you for choosing: ' + optionText + '. How can I assist you further?',
+        text: 'Thank you for choosing: ' + optionText + '. How can I assist you further? asdjajshjd hjakshd hashdjk hjkash djhasj hdkjash dkjhajks',
       };
 
       // Add the computer's message to the existing messages
@@ -82,29 +82,42 @@ const ChatRoom = () => {
     <div>
       <h1 className="text-2xl font-bold text-gray-700">{selectedItem.title}</h1>
       
-      <div className="bg-gray-200 p-4 h-96 overflow-y-auto">
+      <div className="bg-gray-200 p-4 h-[550px] overflow-y-auto">
       
       {/* Render chat messages */}
       <div className="mb-4">
         {messages.map((message, index) => (
           <div
             key={index}
-            className={`items-center mb-2 ${
-              message.id === 'computer' ? 'text-left' : 'text-right'
+            className={`mb-2 ${
+              message.id === 'computer' ? 'flex justify-start' : 'flex justify-end'
             }`}
           >
             {message.id === 'computer' ? (
-              <div className="mr-2">
-                <span role="img" aria-label="Computer Icon">🖥️ <span className={`p-2 rounded-lg bg-white`}>{message.text}</span></span>
+              <div className="flex items-center">
+                <span role="img" aria-label="Computer Icon" className="mr-2">
+                  🖥️
+                </span>
+                <div className="bg-white p-2 rounded-lg max-w-[70%] word-break-break-all">
+                  {message.text}
+                </div>
+                
               </div>
             ) : (
-              <div className="mr-2">
-                <span role="img" aria-label="Human Icon"><span className={`p-2 rounded-lg bg-blue-200`}>{message.text}</span> 👤</span>
+              <div className="flex items-center">
+                
+                <div className="bg-blue-200 p-2 rounded-lg max-w-[70%] word-break-break-all">
+                  {message.text}
+                </div>
+                <span role="img" aria-label="Human Icon" className="ml-2">
+                  👤
+                </span>
               </div>
             )}
+        </div>
+))}
+<div ref={messagesEndRef} />
 
-          </div>
-        ))}
         <div ref={messagesEndRef} />
         {isTyping && (
         <div className="text-left item-center mb-2">
