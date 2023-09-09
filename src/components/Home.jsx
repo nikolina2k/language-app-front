@@ -9,23 +9,21 @@ const Home = () => {
     const {level, progress, maxProgress} = useContext(ProgressContext);
     return (
         <div
-            className="h-screen py-10 px-8"
-            style={{ color: "black" }}
+            className="h-screen py-10 px-8 text-black"
         >
             <div className="flex justify-between">
-                <span style={{ fontSize: "52px" }}>Максим Матанцев</span>
+                <span className="text-5xl">Максим Матанцев</span>
                 <div
                     className="flex items-center justify-center"
-                    style={{ display: "flex" }}
                 >
                     <img src={streakIcon} alt="streak icon" />
-                    <span style={{ fontSize: "36px" }}>28</span>
+                    <span className="text-4xl">28</span>
                 </div>
             </div>
             <div className="flex flex-col items-start">
-                <p style={{ fontSize: "36px" }}>Уровень {level}</p>
+                <p className="text-4xl">Уровень {level}</p>
                 <ProgressBar maxValue={maxProgress} currentValue={progress}/>
-                <p style={{ fontSize: "18px" }}>
+                <p className="text-xl">
                     {progress}/{maxProgress} XP до следующего уровня
                 </p>
             </div>
