@@ -7,7 +7,6 @@ import CategoryList from "./components/Words/Categories.jsx";
 import DialogsList from "./components/Dialogs/DialogsList";
 import Chat from "./components/Dialogs/Chat";
 
-
 function App() {
   return (
     <Router>
@@ -16,7 +15,7 @@ function App() {
         <Routes>
           <Route path="/" exact Component={Home} />
           <Route path="/dialogs" Component={DialogsList} />
-          <Route path="/chat/:id" Component={Chat}/>
+          <Route path="/chat/:id" Component={Chat} />
           <Route path="/create" Component={Create} />
           <Route path="/word" Component={CategoryList} />
         </Routes>

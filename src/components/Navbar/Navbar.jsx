@@ -1,4 +1,12 @@
-const Navbar = () => {
+import { Link, useLocation } from "react-router-dom";
+
+const Navbar = ({}) => {
+  const location = useLocation();
+
+  const isLinkActive = (path) => {
+    return location.pathname === path ? "text-green-500" : "text-black";
+  };
+
   return (
     <div className="flex justify-between items-center border-b border-gray-100 w-full py-2">
       <div className="text-3xl font-extrabold text-gray-900 dark:text-white font-roboto">
@@ -10,24 +18,30 @@ const Navbar = () => {
       <div className="flex items-center">
         <ul className="flex space-x-4">
           <li>
-            <a href="/" className="text-black">
+            <Link to="/" className={`text-black ${isLinkActive("/")}`}>
               Профиль
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/dialogs" className="text-black">
+            <Link
+              to="/dialogs"
+              className={`text-black ${isLinkActive("/dialogs")}`}
+            >
               Диалоги
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/create" className="text-black">
+            <Link
+              to="/create"
+              className={`text-black ${isLinkActive("/create")}`}
+            >
               Создать Диалог
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/word" className="text-black">
+            <Link to="/word" className={`text-black ${isLinkActive("/word")}`}>
               Слова
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
