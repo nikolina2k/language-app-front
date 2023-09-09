@@ -1,8 +1,6 @@
 import items from "./Items";
-import React, { useState } from "react";
+import { useState } from "react";
 import SingleDialog from "./SingleDialog";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const DialogsList = () => {
   const sortedItems = items.slice().sort((a, b) => b.voteCount - a.voteCount);
