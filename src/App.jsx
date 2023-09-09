@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import CategoryList from "./components/Words/Categories.jsx";
 import DialogsList from "./components/Dialogs/DialogsList";
 import ChatRoom from "./components/Dialogs/Chat";
+import Words from "./components/Words/Words.jsx";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/chat/:id" Component={ChatRoom}/>
           <Route path="/create" Component={Create} />
           <Route path="/word" Component={CategoryList} />
+          <Route path="/word/:categoryId" Component={Words} />
 
         </Routes>
       </div>
