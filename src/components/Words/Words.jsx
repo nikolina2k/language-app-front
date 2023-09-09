@@ -70,7 +70,6 @@ const Words= () => {
     };
 
     const handleNextWord = () => {
-        console.log("Index: "+currentWordIndex + " total: "+ categoryWords.words.length)
         if (currentWordIndex + 1 < categoryWords.words.length) {
             setCurrentWordIndex(currentWordIndex + 1);
             setSelectedImageIndex(null);
@@ -92,7 +91,7 @@ const Words= () => {
             {currentWordIndex < totalWords && !showResults ? (
                 <>
                     <h2 className="text-2xl font-semibold mb-4">{currentWord.word}</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 gap-4">
                         {currentWord.images.map((image, index) => (
                             <div
                                 key={index}
@@ -114,7 +113,6 @@ const Words= () => {
                                     alt={`Image ${index + 1}`}
                                     className="w-36 h-36 object-cover rounded-full mx-auto mb-2"
                                 />
-                                <p className="text-center text-gray-600">{`Image ${index + 1}`}</p>
                             </div>
                         ))}
                     </div>
@@ -132,7 +130,7 @@ const Words= () => {
                         <div className="mt-4">
                             <p
                                 className={`text-lg font-semibold ${
-                                    result === 'Correct' ? 'text-green-500' : 'text-red-500'
+                                    result === 'Верно!' ? 'text-green-500' : 'text-red-500'
                                 }`}
                             >
                                 {result}
