@@ -124,7 +124,7 @@ const Words= () => {
                                 onClick={handleCheckAnswer}
                                 className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full"
                             >
-                                Check Answer
+                                Проверить ответ
                             </button>
                         </div>
                     )}
@@ -142,14 +142,14 @@ const Words= () => {
                                     onClick={handleNextWord}
                                     className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full"
                                 >
-                                    Next Word
+                                    Следующее слово
                                 </button>
                             ) : (
                                 <button
                                     onClick={handleShowResults}
                                     className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full"
                                 >
-                                    Show Results
+                                    Показать результаты
                                 </button>
                             )}
                         </div>
