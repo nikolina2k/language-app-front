@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
 const wordsData = [
     {
@@ -46,7 +46,8 @@ const Words= () => {
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
     const [correctAnswers, setCorrectAnswers] = useState(0);
     const [incorrectWords, setIncorrectWords] = useState([]);
-    const [showAnswer, setShowAnswer] = useState(false);
+    const [result, setResult] = useState(null); // Track result
+    const [showResults, setShowResults] = useState(false); // Track result
 
     if (!categoryWords) {
         return <div className="text-red-600">Category not found</div>;
@@ -61,10 +62,10 @@ const Words= () => {
     const handleCheckAnswer = () => {
         if (selectedImageIndex === currentWord.correctImage) {
             setCorrectAnswers(correctAnswers + 1);
-            setShowAnswer('Correct');
+            setResult('Верно!'); // Set the result to 'Correct'
         } else {
             setIncorrectWords([...incorrectWords, currentWord.word]);
-            setShowAnswer('Incorrect');
+            setResult('Ошибся :('); // Set the result to 'Incorrect'
         }
     };
 
@@ -72,29 +73,36 @@ const Words= () => {
         if (currentWordIndex + 1 < categoryWords.words.length) {
             setCurrentWordIndex(currentWordIndex + 1);
             setSelectedImageIndex(null);
-            setShowAnswer(false);
+            setResult(null); // Reset the result
+        } else {
+            // If it's the last word, show results
+            setShowResults(true);
         }
     };
 
     const totalWords = categoryWords.words.length;
 
+    function handleShowResults() {
+        setShowResults(true);
+    }
+
     return (
         <div className="max-w-screen-lg mx-auto p-4">
-            {currentWordIndex < totalWords ? (
+            {currentWordIndex < totalWords && !showResults ? (
                 <>
                     <h2 className="text-2xl font-semibold mb-4">{currentWord.word}</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 gap-4">
                         {currentWord.images.map((image, index) => (
                             <div
                                 key={index}
                                 className={`bg-white p-4 rounded-lg shadow-md cursor-pointer ${
                                     selectedImageIndex === index ? 'border-2 border-blue-500' : ''
                                 } ${
-                                    showAnswer === 'Correct' && index === currentWord.correctImage
+                                    result === 'Верно!' && index === currentWord.correctImage
                                         ? 'border-2 border-green-500'
                                         : ''
                                 } ${
-                                    showAnswer === 'Incorrect' && index === selectedImageIndex
+                                    result === 'Ошибся :(' && index === selectedImageIndex
                                         ? 'border-2 border-red-500'
                                         : ''
                                 }`}
@@ -103,47 +111,55 @@ const Words= () => {
                                 <img
                                     src={image}
                                     alt={`Image ${index + 1}`}
-                                    className="w-36 h-36 object-cover rounded-full mx-auto mb-2"
+                                    className="w-full rounded-lg h-full object-cover mx-auto mb-2"
                                 />
-                                <p className="text-center text-gray-600">{`Image ${index + 1}`}</p>
                             </div>
                         ))}
                     </div>
-                    {!showAnswer && selectedImageIndex !== null && (
+                    {!result && selectedImageIndex !== null && (
                         <div className="mt-4">
                             <button
                                 onClick={handleCheckAnswer}
                                 className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full"
                             >
-                                Check Answer
+                                Проверить ответ
                             </button>
                         </div>
                     )}
-                    {showAnswer && (
+                    {result && (
                         <div className="mt-4">
                             <p
                                 className={`text-lg font-semibold ${
-                                    showAnswer === 'Correct' ? 'text-green-500' : 'text-red-500'
+                                    result === 'Верно!' ? 'text-green-500' : 'text-red-500'
                                 }`}
                             >
-                                {showAnswer}
+                                {result}
                             </p>
-                            <button
-                                onClick={handleNextWord}
-                                className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full"
-                            >
-                                Next Word
-                            </button>
+                            {currentWordIndex + 1 < totalWords ? (
+                                <button
+                                    onClick={handleNextWord}
+                                    className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full"
+                                >
+                                    Следующее слово
+                                </button>
+                            ) : (
+                                <button
+                                    onClick={handleShowResults}
+                                    className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full"
+                                >
+                                    Показать результаты
+                                </button>
+                            )}
                         </div>
                     )}
                 </>
             ) : (
                 <div className="mt-4">
-                    <h3 className="text-lg font-semibold">Quiz Summary</h3>
-                    <p className="text-green-500 font-semibold">{`Correct Answers: ${correctAnswers} / ${totalWords}`}</p>
+                    <h3 className="text-lg font-semibold">Итог теста:</h3>
+                    <p className="text-green-500 font-semibold">{`Правильных ответов: ${correctAnswers} / ${totalWords}`}</p>
                     {incorrectWords.length > 0 && (
                         <div>
-                            <h3 className="text-red-500 font-semibold">Incorrect Words:</h3>
+                            <h3 className="text-red-500 font-semibold">Ошибся в словах:</h3>
                             <ul className="list-disc list-inside">
                                 {incorrectWords.map((word, index) => (
                                     <li key={index}>{word}</li>
@@ -152,14 +168,15 @@ const Words= () => {
                         </div>
                     )}
                     <Link
-                        to="/"
+                        to="/word"
                         className="mt-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full"
                     >
-                        Go Home
+                        Вернуться обратно
                     </Link>
                 </div>
             )}
         </div>
     );
 };
+
 export default Words;

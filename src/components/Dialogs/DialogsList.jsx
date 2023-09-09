@@ -27,8 +27,8 @@ const DialogsList = () => {
   };
 
   return (
-    <div className="p-4">
-      <div className="pb-4 flex space-x-4">
+    <div className="p-4 mt-5">
+      <div className="pb-8 flex space-x-4">
         <div className="flex-grow">
           <select
             data-te-select-init
