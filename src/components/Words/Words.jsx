@@ -62,10 +62,10 @@ const Words= () => {
     const handleCheckAnswer = () => {
         if (selectedImageIndex === currentWord.correctImage) {
             setCorrectAnswers(correctAnswers + 1);
-            setResult('Correct'); // Set the result to 'Correct'
+            setResult('Верно!'); // Set the result to 'Correct'
         } else {
             setIncorrectWords([...incorrectWords, currentWord.word]);
-            setResult('Incorrect'); // Set the result to 'Incorrect'
+            setResult('Ошибся :('); // Set the result to 'Incorrect'
         }
     };
 
@@ -99,11 +99,11 @@ const Words= () => {
                                 className={`bg-white p-4 rounded-lg shadow-md cursor-pointer ${
                                     selectedImageIndex === index ? 'border-2 border-blue-500' : ''
                                 } ${
-                                    result === 'Correct' && index === currentWord.correctImage
+                                    result === 'Верно!' && index === currentWord.correctImage
                                         ? 'border-2 border-green-500'
                                         : ''
                                 } ${
-                                    result === 'Incorrect' && index === selectedImageIndex
+                                    result === 'Ошибся :(' && index === selectedImageIndex
                                         ? 'border-2 border-red-500'
                                         : ''
                                 }`}
@@ -157,11 +157,11 @@ const Words= () => {
                 </>
             ) : (
                 <div className="mt-4">
-                    <h3 className="text-lg font-semibold">Quiz Summary</h3>
-                    <p className="text-green-500 font-semibold">{`Correct Answers: ${correctAnswers} / ${totalWords}`}</p>
+                    <h3 className="text-lg font-semibold">Итог теста:</h3>
+                    <p className="text-green-500 font-semibold">{`Правильных ответов: ${correctAnswers} / ${totalWords}`}</p>
                     {incorrectWords.length > 0 && (
                         <div>
-                            <h3 className="text-red-500 font-semibold">Incorrect Words:</h3>
+                            <h3 className="text-red-500 font-semibold">Ошибся в словах:</h3>
                             <ul className="list-disc list-inside">
                                 {incorrectWords.map((word, index) => (
                                     <li key={index}>{word}</li>
