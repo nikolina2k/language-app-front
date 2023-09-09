@@ -1,9 +1,7 @@
-import React from 'react';
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 
 import Dialog from './components/Dialog';
-import Word from './components/Word';
 import Home from './components/Home';
 import Create from './components/Create';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -12,7 +10,7 @@ import CategoryList from "./components/Words/Categories.jsx";
 function App() {
   return (
     <Router>
-      <div>
+      <div className="mx-auto max-w-screen-lg">
         <Navbar />
         <Routes>
           <Route path="/" exact Component={Home} />
