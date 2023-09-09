@@ -1,6 +1,6 @@
 // CategoryList.js
 import React from 'react';
-// import { Link } from 'react-router-dom'; // Assuming you are using React Router for navigation
+import { Link } from 'react-router-dom'; // Assuming you are using React Router for navigation
 
 const categories = [
     {
@@ -20,6 +20,16 @@ const categories = [
     },
     {
         id: 4,
+        title: 'Овощи',
+        description: 'Слова для изучения овощей',
+    },
+    {
+        id: 5,
+        title: 'Овощи',
+        description: 'Слова для изучения овощей',
+    },
+    {
+        id: 6,
         title: 'Овощи',
         description: 'Слова для изучения овощей',
     }

@@ -7,6 +7,7 @@ import Word from './components/Word';
 import Home from './components/Home';
 import Create from './components/Create';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import CategoryList from "./components/Words/Categories.jsx";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           <Route path="/" exact Component={Home} />
           <Route path="/dialog" Component={Dialog} />
           <Route path="/create" Component={Create} />
-          <Route path="/word" Component={Word} />
+          <Route path="/word" Component={CategoryList} />
         </Routes>
       </div>
     </Router>
