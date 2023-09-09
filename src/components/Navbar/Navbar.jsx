@@ -9,11 +9,19 @@ const Navbar = () => {
         </div>
       
       <div className="flex justify-center item-center mx-auto">
-        <h1>name1</h1>
+        <ul className="flex space-x-4">
+            <li>
+              <a href="/" className="text-black">Home</a>
+            </li>
+            <li>
+              <a href="/word" className="text-black">Word</a>
+            </li>
+            <li>
+              <a href="/dialog" className="text-black">Dialog</a>
+            </li>
+          </ul>
       </div>
-      <div>
-        <h1>name2</h1>
-      </div>
+     
     </div>
   );
 };
