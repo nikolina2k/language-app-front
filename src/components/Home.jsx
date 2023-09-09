@@ -6,10 +6,10 @@ const Home = () => {
     return (
         <div
             className="h-screen py-10 px-8"
-            style={{ backgroundColor: "#87786D", color: "white" }}
+            style={{ color: "black" }}
         >
             <div className="flex justify-between">
-                <span style={{ fontSize: "64px" }}>Максим Матанцев</span>
+                <span style={{ fontSize: "52px" }}>Максим Матанцев</span>
                 <div
                     className="flex items-center justify-center"
                     style={{ display: "flex" }}
@@ -26,7 +26,7 @@ const Home = () => {
                 </p>
             </div>
             <div className="flex flex-col mt-20" style={{gap:'25px'}}>
-              <ProfileCard link={'#'} title={'Завершеные диалоги'}/>
+              <ProfileCard link={"/dialogs-end"} title={'Завершеные диалоги'}/>
               <ProfileCard link={'#'} title={'Созданные диалоги'}/>
               <ProfileCard link={'#'} title={'Выученные слова'}/>
             </div>
