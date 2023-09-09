@@ -1,5 +1,12 @@
-import { useState } from "react";
+import {useState} from "react";
 import {Link, useParams} from "react-router-dom";
+import apple from '../../assets/word/fruits/apple.jpeg';
+import banana from '../../assets/word/fruits/banana.jpg';
+import kiwi from '../../assets/word/fruits/kiwi.jpg';
+import limon from '../../assets/word/fruits/limon.jpg';
+import orange from '../../assets/word/fruits/orange.jpg';
+import pears from '../../assets/word/fruits/pears.jpg';
+import vinograd from '../../assets/word/fruits/vinograd.jpg';
 
 const wordsData = [
     {
@@ -8,28 +15,28 @@ const wordsData = [
             {
                 word: 'Алма',
                 images: [
-                    'https://remontnichek.ru/wp-content/uploads/2028/03/sorta-grush-29.jpg',
-                    'https://i.pinimg.com/originals/6a/bf/a9/6abfa90bd5ff616b000dfe8a8a3ceb55.jpg',
-                    'https://w.forfun.com/fetch/a8/a88c709d1c6c613541eb97dd07b40012.jpeg',
-                    'https://s1.1zoom.ru/big3/783/398395-sepik.jpg'
+                    banana,
+                    orange,
+                    apple,
+                    kiwi,
                 ],
                 correctImage: 2,
             }, {
                 word: 'әфлисун',
                 images: [
-                    'https://proprikol.ru/wp-content/uploads/2020/08/kartinki-kivi-2.jpg',
-                    'https://i.pinimg.com/originals/6a/bf/a9/6abfa90bd5ff616b000dfe8a8a3ceb55.jpg',
-                    'https://klike.net/uploads/posts/2022-08/1661955736_j-18.jpg',
-                    'https://kartinkin.net/uploads/posts/2022-02/1645491000_12-kartinkin-net-p-apelsin-kartinki-15.jpg'
+                    kiwi,
+                    banana,
+                    vinograd,
+                    orange,
                 ],
                 correctImage: 3,
             }, {
                 word: 'йөзем',
                 images: [
-                    'https://klike.net/uploads/posts/2022-08/1661955736_j-18.jpg',
-                    'https://i.pinimg.com/originals/6a/bf/a9/6abfa90bd5ff616b000dfe8a8a3ceb55.jpg',
-                    'https://w.forfun.com/fetch/a8/a88c709d1c6c613541eb97dd07b40012.jpeg',
-                    'https://kartinkin.net/uploads/posts/2022-02/1645491000_12-kartinkin-net-p-apelsin-kartinki-15.jpg'
+                    vinograd,
+                    orange,
+                    pears,
+                    limon,
                 ],
                 correctImage: 0,
             },
@@ -38,8 +45,8 @@ const wordsData = [
 
 ];
 
-const Words= () => {
-    const { categoryId } = useParams(); // Get the categoryId from the path parameter
+const Words = () => {
+    const {categoryId} = useParams(); // Get the categoryId from the path parameter
     const categoryWords = wordsData.find((category) => category.categoryId === Number(categoryId));
 
     const [currentWordIndex, setCurrentWordIndex] = useState(0);
