@@ -4,6 +4,11 @@ import { Link } from 'react-router-dom'; // Assuming you are using React Router 
 
 const categories = [
     {
+        id: 0,
+        title: 'Татарские национальные блюда',
+        description: 'Слова для изучения татарских национальных блюд',
+    },
+    {
         id: 1,
         title: 'Фрукты',
         description: 'Слова для изучений названий фруктов',
