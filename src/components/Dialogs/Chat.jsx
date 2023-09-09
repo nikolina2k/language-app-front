@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import items from "./Items";
 
@@ -67,12 +67,22 @@ const ChatRoom = () => {
     setOptionsVisible(false);
   };
 
-  console.log(messages);
+  const messagesEndRef = useRef(null)
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
+
+  useEffect(() => {
+    scrollToBottom()
+  }, [messages]);
+
 
   return (
     <div>
-      <h1>{selectedItem.title}</h1>
-      <div className="bg-gray-200 p-4 h-120">
+      <h1 className="text-2xl font-bold text-gray-700">{selectedItem.title}</h1>
+      
+      <div className="bg-gray-200 p-4 h-96 overflow-y-auto">
       
       {/* Render chat messages */}
       <div className="mb-4">
@@ -95,13 +105,14 @@ const ChatRoom = () => {
 
           </div>
         ))}
+        <div ref={messagesEndRef} />
         {isTyping && (
         <div className="text-left item-center mb-2">
           🖥️ 
           <span className="p-2 rounded-lg bg-white ml-2">
-            <span className="animate-ping animate-pulse animate-delay-100">.</span>
-            <span className="animate-ping animate-pulse animate-delay-500">.</span>
-            <span className="animate-ping animate-pulse animate-delay-1000">.</span>
+            <span className="inline-block animate-bounce rounded-full text-sm">.</span>
+            <span className="inline-block animate-bounce rounded-full text-sm animate-delay-500">.</span>
+            <span className="inline-block animate-bounce rounded-full text-sm animate-delay-1000">.</span>
           </span>
           
         </div>
@@ -112,7 +123,7 @@ const ChatRoom = () => {
       
 
       {/* Render user options */}
-      {optionsVisible && (
+      {!isTyping && optionsVisible && (
         <div className="grid grid-cols-3 gap-4">
         <button
           className="bg-blue-400 hover:bg-blue-600 text-white py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
