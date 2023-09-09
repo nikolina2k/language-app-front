@@ -15,7 +15,7 @@ const Navbar = () => {
             </a>
           </li>
           <li>
-            <a href="/dialog" className="text-black">
+            <a href="/dialogs" className="text-black">
               Dialogs
             </a>
           </li>
