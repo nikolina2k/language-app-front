@@ -1,42 +1,12 @@
 import { useParams } from "react-router-dom";
 import React, { useState, useEffect, useRef } from "react";
-
-import axios from 'axios';
-import { unescape } from 'html-entities';
+import storyData from "./ExampleDialog";
 
 import items from "./Items";
 
 const ChatRoom = () => {
   // Use the useParams hook to get the item ID from the URL
   const { id } = useParams();
-
-  async function translateWord(inputWord, translationDirection) {
-    try {
-      const response = await axios.get(
-        translationDirection === 'tat2rus'
-          ? `https://translate.tatar/translate?lang=1&text=${encodeURIComponent(inputWord)}`
-          : `https://translate.tatar/translate?lang=0&text=${encodeURIComponent(inputWord)}`
-      );
-  
-      const parsedText = unescape(response.data);
-      return parsedText;
-    } catch (error) {
-      console.error('Translation error:', error);
-      throw error;
-    }
-  }
-
-  async function translateExample() {
-    try {
-      const translatedText = await translateWord('example', 'tat2rus');
-      console.log('Translated Text:', translatedText);
-    } catch (error) {
-      console.error('Translation error:', error);
-    }
-  }
-  
-  translateExample();
-  
 
   // Find the item based on the item ID from the URL
   const selectedItem = items.find((item) => item.id === id);
@@ -48,6 +18,9 @@ const ChatRoom = () => {
   const [messages, setMessages] = useState([]);
   const [isTyping, setIsTyping] = useState(true);
   const [optionsVisible, setOptionsVisible] = useState(true);
+  const [currentScene, setCurrentScene] = useState("park"); // Initialize with the initial scene
+
+  const getSceneData = (scene) => storyData[scene];
 
   useEffect(() => {
     const typingTimer = setTimeout(() => {
@@ -55,7 +28,7 @@ const ChatRoom = () => {
 
       const computerMessage = {
         id: "computer",
-        text: "Hello, how can I help you?",
+        text: getSceneData(currentScene).dialog,
       };
 
       setMessages((prevMessages) => [...prevMessages, computerMessage]);
@@ -64,34 +37,44 @@ const ChatRoom = () => {
     return () => clearTimeout(typingTimer);
   }, []);
 
+
   const handleOptionClick = (optionText) => {
+    // Get the current scene data
+    const currentSceneData = getSceneData(currentScene);
+
     // Display the user's selected option as a message
     const userMessage = {
       id: "user",
       text: optionText,
     };
 
-    // Add the user's message to the existing messages
     setMessages((prevMessages) => [...prevMessages, userMessage]);
-
-    // Simulate computer typing
     setIsTyping(true);
 
     // Simulate a delay before the computer responds
     setTimeout(() => {
       setIsTyping(false);
 
-      // Simulate computer's response
-      const computerMessage = {
-        id: "computer",
-        text:
-          "Thank you for choosing: " +
-          optionText +
-          ". How can I assist you further? asdjajshjd hjakshd hashdjk hjkash djhasj hdkjash dkjhajks",
-      };
+      if (currentSceneData.options) {
+        // Find the selected option
+        const selectedOption = currentSceneData.options.find(
+          (option) => option.text === optionText
+        );
 
-      // Add the computer's message to the existing messages
-      setMessages((prevMessages) => [...prevMessages, computerMessage]);
+        if (selectedOption && selectedOption.result) {
+          // Navigate to the next scene based on the selected option
+          setCurrentScene(selectedOption.result);
+
+          // // Simulate computer's response
+          const computerMessage = {
+            id: "computer",
+            text: getSceneData(selectedOption.result).dialog,
+          };
+
+          // Add the computer's message to the existing messages
+          setMessages((prevMessages) => [...prevMessages, computerMessage]);
+        }
+      }
 
       // Show options again
       setOptionsVisible(true);
@@ -126,9 +109,7 @@ const ChatRoom = () => {
           {messages.map((message, index) => (
             <div
               key={index}
-              className={`mb-2 ${
-                message.id === "computer" ? "text-left" : "text-right"
-              }`}
+              className={`mb-2`}
             >
               <div
                 className={`flex items-center ${
@@ -149,11 +130,13 @@ const ChatRoom = () => {
                     </div>
                   </div>
                 ) : (
-                  <div className="flex items-center">
+                  <div className="flex items-center justify-end">
                     <div className="bg-blue-200 p-2 rounded-lg max-w-[70%] break-words">
                       {message.text}
                     </div>
-                    <span role="img" aria-label="Human Icon" className="ml-2">
+                    <span role="img" 
+                          aria-label="Human Icon" 
+                          className="ml-2">
                       👤
                     </span>
                   </div>
@@ -184,24 +167,15 @@ const ChatRoom = () => {
         {/* Render user options */}
         {!isTyping && optionsVisible && (
           <div className="grid grid-cols-3 gap-4">
-            <button
-              className="bg-blue-400 hover:bg-blue-600 text-white py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
-              onClick={() => handleOptionClick("Option 1")}
-            >
-              Option 1
-            </button>
-            <button
-              className="bg-blue-400 hover:bg-blue-600 text-white py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
-              onClick={() => handleOptionClick("Option 2")}
-            >
-              Option 2
-            </button>
-            <button
-              className="bg-blue-400 hover:bg-blue-600 text-white py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
-              onClick={() => handleOptionClick("Option 3")}
-            >
-              Option 3
-            </button>
+            {getSceneData(currentScene).options && getSceneData(currentScene).options.map((option) => (
+              <button
+                key={option.text}
+                className="bg-blue-400 hover:bg-blue-600 text-white p-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
+                onClick={() => handleOptionClick(option.text)}
+              >
+                {option.text}
+              </button>
+            ))}
           </div>
         )}
       </div>

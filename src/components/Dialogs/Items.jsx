@@ -79,6 +79,14 @@ const items = [
       level: 'Medium',
       category: 'Horror',
     },
+    {
+        id: '11',
+        title: 'Some Love story in park',
+        description: 'Write some description after you read dialog',
+        voteCount: 18,
+        level: 'Medium',
+        category: 'Romance',
+      },
   ];
   
   export default items;
