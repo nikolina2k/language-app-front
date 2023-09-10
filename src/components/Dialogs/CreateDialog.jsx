@@ -67,9 +67,9 @@ const CreateDialog = ({ onSave, onBack }) => {
 
     return (
         <div className="max-w-screen-lg mx-auto p-4">
-            <h2 className="text-2xl font-semibold mb-4">Create Dialog</h2>
+            <h2 className="text-2xl font-semibold mb-4">Создание диалога</h2>
             <div className="mb-4">
-                <label className="block mb-2">Question Content:</label>
+                <label className="block mb-2">Вопрос:</label>
                 <textarea
                     value={question.content}
                     onChange={handleContentChange}
@@ -81,7 +81,7 @@ const CreateDialog = ({ onSave, onBack }) => {
                     onClick={handleOptionAdd}
                     className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full"
                 >
-                    Add Option
+                    Добавить вариант ответа
                 </button>
             </div>
             {question.options.map((option, index) => (
@@ -97,13 +97,13 @@ const CreateDialog = ({ onSave, onBack }) => {
                             onClick={() => handleOptionClick(index)}
                             className="bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-full mr-2"
                         >
-                            Edit Option
+                            Дополнить ветку
                         </button>
                         <button
                             onClick={() => handleOptionDelete(index)}
                             className="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-full"
                         >
-                            Delete Option
+                            Удалить ветку
                         </button>
                     </div>
                 </div>
@@ -113,13 +113,13 @@ const CreateDialog = ({ onSave, onBack }) => {
                     onClick={handleBack}
                     className="bg-gray-500 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-full mr-2"
                 >
-                    Back
+                    Назад
                 </button>
                 <button
                     onClick={handleSave}
                     className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full"
                 >
-                    Save
+                    Сохранить
                 </button>
             </div>
         </div>
