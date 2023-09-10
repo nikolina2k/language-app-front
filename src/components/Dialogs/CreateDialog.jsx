@@ -40,24 +40,6 @@ const CreateDialog = ({ onSave, onBack }) => {
         setQuestion(nextQuestion);
     };
 
-    const handleBack = () => {
-        if (history.length === 0) return; // No previous history
-
-        // Retrieve previous question and options from history
-        const prevQuestion = history.pop();
-        const prevOptions = optionsHistory.pop();
-
-        setQuestion(prevQuestion);
-        setHistory([...history]); // Update history after removing the last element
-
-        // Restore previous options
-        if (prevOptions) {
-            const updatedQuestion = { ...prevQuestion };
-            updatedQuestion.options = prevOptions;
-            setQuestion(updatedQuestion);
-        }
-    };
-
     const handleSave = () => {
         const dialogs = JSON.parse(localStorage.getItem('dialogs')) || [];
         dialogs.push(question);
@@ -67,7 +49,7 @@ const CreateDialog = ({ onSave, onBack }) => {
 
     return (
         <div className="max-w-screen-lg mx-auto p-4">
-            <h2 className="text-2xl font-semibold mb-4">Создание диалога</h2>
+            <h2 className="text-2xl font-semibold mb-4 mt-8">Создание диалога</h2>
             <div className="mb-4">
                 <label className="block mb-2">Вопрос:</label>
                 <textarea
@@ -79,45 +61,41 @@ const CreateDialog = ({ onSave, onBack }) => {
             <div className="mb-4">
                 <button
                     onClick={handleOptionAdd}
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full"
+                    className="bg-gray-500 mb-10 hover:bg-gray-700 text-white font-semibold py-2 px-3 rounded-full text-sm"
                 >
                     Добавить вариант ответа
                 </button>
             </div>
-            {question.options.map((option, index) => (
-                <div key={index} className="mb-4">
-                    <div className="flex items-center mb-2">
-                        <input
-                            type="text"
-                            value={option.content}
-                            onChange={(e) => handleOptionContentChange(index, e)}
-                            className="border border-gray-300 p-2 rounded-lg w-full mr-4"
-                        />
-                        <button
-                            onClick={() => handleOptionClick(index)}
-                            className="bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-full mr-2"
-                        >
-                            Дополнить ветку
-                        </button>
-                        <button
-                            onClick={() => handleOptionDelete(index)}
-                            className="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-full"
-                        >
-                            Удалить ветку
-                        </button>
+            <div className="mb-4">
+                {question.options.map((option, index) => (
+                    <div key={index} className="mb-4">
+                        <div className="flex items-center mb-2">
+                            <input
+                                type="text"
+                                value={option.content}
+                                onChange={(e) => handleOptionContentChange(index, e)}
+                                className="border border-gray-300 p-2 rounded-lg w-full mr-4"
+                            />
+                            <button
+                                onClick={() => handleOptionClick(index)}
+                                className="bg-gray-500 hover:bg-gray-700 text-white font-semibold py-1 px-2 rounded-full mr-2 text-sm"
+                            >
+                                Дополнить
+                            </button>
+                            <button
+                                onClick={() => handleOptionDelete(index)}
+                                className="bg-red-500 hover:bg-red-700 text-white font-semibold py-1 px-2 rounded-full text-sm"
+                            >
+                                Удалить
+                            </button>
+                        </div>
                     </div>
-                </div>
-            ))}
+                ))}
+            </div>
             <div className="mt-4">
                 <button
-                    onClick={handleBack}
-                    className="bg-gray-500 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-full mr-2"
-                >
-                    Назад
-                </button>
-                <button
                     onClick={handleSave}
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full"
+                    className="bg-green-500 mt-10 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-full text-sm"
                 >
                     Сохранить
                 </button>
