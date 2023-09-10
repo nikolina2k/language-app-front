@@ -28,7 +28,7 @@ const Home = () => {
       <div className="mt-8">
         <ProfileCard link={"/dialogs-end"} title={"Завершенные диалоги"} />
         <ProfileCard link={"#"} title={"Созданные диалоги"} />
-        <ProfileCard link={"#"} title={"Выученные слова"} />
+        <ProfileCard link={"/word-list"} title={"Выученные слова"} />
       </div>
     </div>
   );

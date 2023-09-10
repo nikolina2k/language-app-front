@@ -9,6 +9,7 @@ import ChatRoom from "./components/Dialogs/Chat";
 import Words from "./components/Words/Words.jsx";
 import DialogsListFinished from "./components/Dialogs/DialogsListFinished";
 import { useEffect } from "react";
+import WordList from "./components/Words/WordList.jsx";
 
 function App() {
     useEffect(() => {
@@ -38,6 +39,7 @@ function App() {
                     <Route path="/create" Component={Create} />
                     <Route path="/word" Component={CategoryList} />
                     <Route path="/word/:categoryId" Component={Words} />
+                    <Route path="/word-list" Component={WordList} />
                 </Routes>
             </div>
         </Router>
