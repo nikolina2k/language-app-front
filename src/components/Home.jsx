@@ -5,9 +5,9 @@ import ProgressBar from "./Profile/ProgressBar";
 import { ProgressContext } from "./context";
 
 const Home = () => {
-  const level = localStorage.getItem("level");
-  const progress = localStorage.getItem("progress");
-  const maxProgress = localStorage.getItem("maxProgress");
+  const level = localStorage.getItem("level") ?? 23;
+  const progress = localStorage.getItem("progress") ?? 45;
+  const maxProgress = localStorage.getItem("maxProgress") ?? 100;
 
   return (
     <div className="h-3xl flex flex-col items-center justify-center bg-gray-100 p-8 mt-10">
