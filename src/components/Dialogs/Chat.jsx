@@ -152,7 +152,7 @@ const ChatRoom = () => {
               <div
                   key={index}
                   className={`mb-2`}
-                  onMouseOver={() => handleMouseOver(message.text)} // Add onMouseOver event
+                  onMouseOver={() => handleMouseOver(message.text)}
               >
               <div
                 className={`flex items-center ${
@@ -215,6 +215,7 @@ const ChatRoom = () => {
                 key={option.text}
                 className="bg-blue-400 hover:bg-blue-600 text-sm text-white p-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
                 onClick={() => handleOptionClick(option.text)}
+                onMouseOver={() => handleMouseOver(option.text)}
               >
                 {option.text}
               </button>
