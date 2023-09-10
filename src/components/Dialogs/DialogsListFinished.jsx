@@ -5,7 +5,7 @@ const DialogsListFinished = () => {
   const sortedItems = itemsFinished.slice().sort((a, b) => b.voteCount - a.voteCount);
   
   return (
-    <div className="p-4">
+    <div className="p-4 mt-6">
       <ul>
         {sortedItems &&
           sortedItems.map((item) => (

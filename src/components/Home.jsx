@@ -5,35 +5,33 @@ import ProgressBar from "./Profile/ProgressBar";
 import { ProgressContext } from "./context";
 
 const Home = () => {
-    const level = localStorage.getItem("level");
-    const progress = localStorage.getItem("progress");
-    const maxProgress = localStorage.getItem("maxProgress");
+  const level = localStorage.getItem("level");
+  const progress = localStorage.getItem("progress");
+  const maxProgress = localStorage.getItem("maxProgress");
 
-    return (
-        <div className="h-screen py-10 px-8 text-sm text-black">
-            <div className="flex justify-between">
-                <span className="text-5xl">Максим Матанцев</span>
-                <div
-                    className="flex items-center justify-center"
-                >
-                    <img src={streakIcon} alt="streak icon" />
-                    <span className="text-4xl">1</span>
-                </div>
-            </div>
-            <div className="flex flex-col items-start mt-8">
-                <p className="text-3xl">Уровень {level}</p>
-                <ProgressBar maxValue={maxProgress} currentValue={progress} barHeight="h-1" />
-                <p className="text-lg">
-                    {progress}/{maxProgress} XP до следующего уровня
-                </p>
-            </div>
-            <div className="flex flex-col mt-10 space-y-6">
-                <ProfileCard link={"/dialogs-end"} title={"Завершеные диалоги"} />
-                <ProfileCard link={"#"} title={"Созданные диалоги"} />
-                <ProfileCard link={"#"} title={"Выученные слова"} />
-            </div>
-        </div>
-    );
+  return (
+    <div className="h-3xl flex flex-col items-center justify-center bg-gray-100 p-8 mt-10">
+      <div className="text-4xl font-bold mb-6">Максим Матанцев</div>
+      <div className="flex items-center space-x-2 mb-8">
+        <img src={streakIcon} alt="streak icon" className="w-8 h-8" />
+        <span className="text-2xl font-semibold">34</span>
+      </div>
+      <div className="text-2xl font-semibold mb-2">Уровень {level}</div>
+      <ProgressBar
+        maxValue={maxProgress}
+        currentValue={progress}
+        barHeight="h-2"
+      />
+      <div className="text-lg mt-2">
+        {progress}/{maxProgress} XP до следующего уровня
+      </div>
+      <div className="mt-8">
+        <ProfileCard link={"/dialogs-end"} title={"Завершенные диалоги"} />
+        <ProfileCard link={"#"} title={"Созданные диалоги"} />
+        <ProfileCard link={"#"} title={"Выученные слова"} />
+      </div>
+    </div>
+  );
 };
 
 export default Home;
