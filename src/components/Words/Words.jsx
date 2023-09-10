@@ -7,6 +7,16 @@ import limon from '../../assets/word/fruits/limon.jpg';
 import orange from '../../assets/word/fruits/orange.jpg';
 import pears from '../../assets/word/fruits/pears.jpg';
 import vinograd from '../../assets/word/fruits/vinograd.jpg';
+import azu_iz_govyadinny from '../../assets/word/foods/azu_iz_govyadinny.jpg';
+import chack_chack from '../../assets/word/foods/chak-chak.jpg';
+import echpochmak  from '../../assets/word/foods/echpochmak.jpg';
+import elesh from '../../assets/word/foods/elesh.jpg';
+import kysybyy from '../../assets/word/foods/kystybyy.jpg';
+import zur_balish from '../../assets/word/foods/zur-balish.jpg';
+import borsch from '../../assets/word/foods/borsch.jpg';
+import cheburek  from '../../assets/word/foods/cheburek.jpg';
+import manti from '../../assets/word/foods/manti.jpg';
+import plov from '../../assets/word/foods/plov.jpg';
 
 const wordsData = [
     {
@@ -37,6 +47,66 @@ const wordsData = [
                     orange,
                     pears,
                     limon,
+                ],
+                correctImage: 0,
+            },
+        ]
+    },
+    {
+        categoryId: 0,
+        words: [
+            {
+                word: 'Эчпочмак',
+                images: [
+                    echpochmak,
+                    cheburek,
+                    manti,
+                    kysybyy
+                ],
+                correctImage: 0,
+            }, {
+                word: 'Сыер итеннән Азу',
+                images: [
+                    plov,
+                    manti,
+                    borsch,
+                    azu_iz_govyadinny,
+                ],
+                correctImage: 3,
+            }, {
+                word: 'Кыстыбый',
+                images: [
+                    kysybyy,
+                    chack_chack,
+                    zur_balish,
+                    echpochmak
+                ],
+                correctImage: 0,
+            }, {
+                word: 'Зур-бәләш',
+                images: [
+                    echpochmak,
+                    borsch,
+                    zur_balish,
+                    manti
+                ],
+                correctImage: 2,
+            }, {
+                word: 'Элеш',
+                images: [
+                    cheburek,
+                    elesh,
+                    kysybyy,
+                    chack_chack
+                ],
+                correctImage: 1,
+            },{
+                word: 'чәк-чәк',
+                images: [
+                    chack_chack,
+                    elesh,
+                    kysybyy,
+                    manti
                 ],
                 correctImage: 0,
             },
@@ -161,7 +231,7 @@ const Words = () => {
                     )}
                 </>
             ) : (
-                <div className="mt-4">
+                <div className="mt-20">
                     <h3 className="text-lg font-semibold">Итог теста:</h3>
                     <p className="text-green-500 font-semibold">{`Правильных ответов: ${correctAnswers} / ${totalWords}`}</p>
                     {incorrectWords.length > 0 && (
@@ -176,7 +246,7 @@ const Words = () => {
                     )}
                     <Link
                         to="/word"
-                        className="mt-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full"
+                        className="mt-4 inline-block bg-green-500 hover:bg-green-400 text-white font-semibold py-2 px-4 rounded-full"
                     >
                         Вернуться обратно
                     </Link>

@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react";
 
 import axios from 'axios';
 import { unescape } from 'html-entities';
@@ -54,8 +54,8 @@ const ChatRoom = () => {
       setIsTyping(false);
 
       const computerMessage = {
-        id: 'computer',
-        text: 'Hello, how can I help you?',
+        id: "computer",
+        text: "Hello, how can I help you?",
       };
 
       setMessages((prevMessages) => [...prevMessages, computerMessage]);
@@ -67,7 +67,7 @@ const ChatRoom = () => {
   const handleOptionClick = (optionText) => {
     // Display the user's selected option as a message
     const userMessage = {
-      id: 'user',
+      id: "user",
       text: optionText,
     };
 
@@ -83,8 +83,11 @@ const ChatRoom = () => {
 
       // Simulate computer's response
       const computerMessage = {
-        id: 'computer',
-        text: 'Thank you for choosing: ' + optionText + '. How can I assist you further? asdjajshjd hjakshd hashdjk hjkash djhasj hdkjash dkjhajks',
+        id: "computer",
+        text:
+          "Thank you for choosing: " +
+          optionText +
+          ". How can I assist you further? asdjajshjd hjakshd hashdjk hjkash djhasj hdkjash dkjhajks",
       };
 
       // Add the computer's message to the existing messages
@@ -98,101 +101,111 @@ const ChatRoom = () => {
     setOptionsVisible(false);
   };
 
-  const messagesEndRef = useRef(null)
+  const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-  }
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   useEffect(() => {
-    scrollToBottom()
+    scrollToBottom();
   }, [messages]);
 
-
   return (
-    <div>
-      <h1 className="text-2xl font-bold text-gray-700">{selectedItem.title}</h1>
-      
-      <div className="bg-gray-200 p-4 h-[550px] overflow-y-auto">
-      
-      {/* Render chat messages */}
-      <div className="mb-4">
-        {messages.map((message, index) => (
-          <div
-            key={index}
-            className={`mb-2 ${
-              message.id === 'computer' ? 'flex justify-start' : 'flex justify-end'
-            }`}
-          >
-            {message.id === 'computer' ? (
-              <div className="flex items-center">
-                <span role="img" aria-label="Computer Icon" className="mr-2">
-                  🖥️
-                </span>
-                <div className="bg-white p-2 rounded-lg max-w-[70%] word-break-break-all">
-                  {message.text}
-                </div>
-                
-              </div>
-            ) : (
-              <div className="flex items-center">
-                
-                <div className="bg-blue-200 p-2 rounded-lg max-w-[70%] word-break-break-all">
-                  {message.text}
-                </div>
-                <span role="img" aria-label="Human Icon" className="ml-2">
-                  👤
-                </span>
-              </div>
-            )}
-        </div>
-))}
-<div ref={messagesEndRef} />
+    <div className="h-full p-20 flex flex-col items-center justify-center mt-10">
+      <div className="w-full max-w-xl bg-white p-4 rounded-lg shadow-md border">
+        <h1 className="text-2xl font-bold text-gray-700 mb-4">
+          {selectedItem.title}
+        </h1>
 
-        <div ref={messagesEndRef} />
+        <div
+          className="bg-gray-300 p-2 rounded-md mb-4"
+          style={{ minHeight: "400px", maxHeight: "400px", overflowY: "auto" }}
+        >
+          {/* Render chat messages */}
+          {messages.map((message, index) => (
+            <div
+              key={index}
+              className={`mb-2 ${
+                message.id === "computer" ? "text-left" : "text-right"
+              }`}
+            >
+              <div
+                className={`flex items-center ${
+                  message.id === "computer" ? "justify-start" : "justify-end"
+                }`}
+              >
+                {message.id === "computer" ? (
+                  <div className="flex items-center">
+                    <span
+                      role="img"
+                      aria-label="Computer Icon"
+                      className="mr-2"
+                    >
+                      🖥️
+                    </span>
+                    <div className="bg-white p-2 rounded-lg max-w-[70%] break-words">
+                      {message.text}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex items-center">
+                    <div className="bg-blue-200 p-2 rounded-lg max-w-[70%] break-words">
+                      {message.text}
+                    </div>
+                    <span role="img" aria-label="Human Icon" className="ml-2">
+                      👤
+                    </span>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+          <div ref={messagesEndRef} />
+        </div>
+
         {isTyping && (
-        <div className="text-left item-center mb-2">
-          🖥️ 
-          <span className="p-2 rounded-lg bg-white ml-2">
-            <span className="inline-block animate-bounce rounded-full text-sm">.</span>
-            <span className="inline-block animate-bounce rounded-full text-sm animate-delay-500">.</span>
-            <span className="inline-block animate-bounce rounded-full text-sm animate-delay-1000">.</span>
-          </span>
-          
-        </div>
-      )}
+          <div className="text-left item-center mb-2">
+            🖥️
+            <span className="p-2 rounded-lg bg-white ml-2">
+              <span className="inline-block animate-bounce rounded-full text-sm">
+                .
+              </span>
+              <span className="inline-block animate-bounce rounded-full text-sm animate-delay-500">
+                .
+              </span>
+              <span className="inline-block animate-bounce rounded-full text-sm animate-delay-1000">
+                .
+              </span>
+            </span>
+          </div>
+        )}
+
+        {/* Render user options */}
+        {!isTyping && optionsVisible && (
+          <div className="grid grid-cols-3 gap-4">
+            <button
+              className="bg-blue-400 hover:bg-blue-600 text-white py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
+              onClick={() => handleOptionClick("Option 1")}
+            >
+              Option 1
+            </button>
+            <button
+              className="bg-blue-400 hover:bg-blue-600 text-white py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
+              onClick={() => handleOptionClick("Option 2")}
+            >
+              Option 2
+            </button>
+            <button
+              className="bg-blue-400 hover:bg-blue-600 text-white py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
+              onClick={() => handleOptionClick("Option 3")}
+            >
+              Option 3
+            </button>
+          </div>
+        )}
       </div>
-
-      {/* Render typing indicator */}
-      
-
-      {/* Render user options */}
-      {!isTyping && optionsVisible && (
-        <div className="grid grid-cols-3 gap-4">
-        <button
-          className="bg-blue-400 hover:bg-blue-600 text-white py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
-          onClick={() => handleOptionClick('Option 1')}
-        >
-          Option 1
-        </button>
-        <button
-          className="bg-blue-400 hover:bg-blue-600 text-white py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
-          onClick={() => handleOptionClick('Option 2')}
-        >
-          Option 2
-        </button>
-        <button
-          className="bg-blue-400 hover:bg-blue-600 text-white py-2 px-4 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
-          onClick={() => handleOptionClick('Option 3')}
-        >
-          Option 3
-        </button>
-      </div>
-      )}
     </div>
-
-    </div>
-    
   );
 };
 
