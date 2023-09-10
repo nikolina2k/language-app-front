@@ -37,7 +37,7 @@ const CategoryList = () => {
       {categories.map((category) => (
         <Link to={`/word/${category.id}`} key={category.id}>
           <div
-            className="bg-cover rounded-lg shadow-md hover:bg-grey-400 p-4 px-4 rounded-full text-white transition duration-300 ease-in-out transform hover:scale-110 h-full border"
+            className="bg-cover rounded-lg shadow-md hover:bg-grey-400 p-6 rounded-full text-white transition duration-300 ease-in-out transform hover:scale-110 h-full border"
             style={{
               backgroundImage: category.bgImage,
             }}
@@ -47,7 +47,7 @@ const CategoryList = () => {
               <div className="h-24">
                 {" "}
                 {/* Fixed height for title */}
-                <h2 className="text-xl font-semibold line-clamp-3">
+                <h2 className="text-xl font-semibold line-clamp-3 pt-4">
                   {category.title}
                 </h2>
               </div>
