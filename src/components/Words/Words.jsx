@@ -140,6 +140,11 @@ const Words = () => {
         if (selectedImageIndex === currentWord.correctImage) {
             setCorrectAnswers(correctAnswers + 1);
             setResult('Верно!'); // Set the result to 'Correct'
+
+            // Save words to localStorage
+            const existingWords = JSON.parse(localStorage.getItem('words')) || [];
+            existingWords.push(currentWord.word);
+            localStorage.setItem('words', JSON.stringify(existingWords));
         } else {
             setIncorrectWords([...incorrectWords, currentWord.word]);
             setResult('Ошибся :('); // Set the result to 'Incorrect'
