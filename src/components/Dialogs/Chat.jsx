@@ -1,11 +1,42 @@
 import { useParams } from "react-router-dom";
 import React, { useState, useEffect, useRef } from 'react';
 
+import axios from 'axios';
+import { unescape } from 'html-entities';
+
 import items from "./Items";
 
 const ChatRoom = () => {
   // Use the useParams hook to get the item ID from the URL
   const { id } = useParams();
+
+  async function translateWord(inputWord, translationDirection) {
+    try {
+      const response = await axios.get(
+        translationDirection === 'tat2rus'
+          ? `https://translate.tatar/translate?lang=1&text=${encodeURIComponent(inputWord)}`
+          : `https://translate.tatar/translate?lang=0&text=${encodeURIComponent(inputWord)}`
+      );
+  
+      const parsedText = unescape(response.data);
+      return parsedText;
+    } catch (error) {
+      console.error('Translation error:', error);
+      throw error;
+    }
+  }
+
+  async function translateExample() {
+    try {
+      const translatedText = await translateWord('example', 'tat2rus');
+      console.log('Translated Text:', translatedText);
+    } catch (error) {
+      console.error('Translation error:', error);
+    }
+  }
+  
+  translateExample();
+  
 
   // Find the item based on the item ID from the URL
   const selectedItem = items.find((item) => item.id === id);
