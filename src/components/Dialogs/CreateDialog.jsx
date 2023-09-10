@@ -6,7 +6,8 @@ const CreateDialog = ({ onSave, onBack }) => {
         options: [],
     });
 
-    const [history, setHistory] = useState([]); // Keep track of previous questions
+    const [history, setHistory] = useState([]);
+    const [optionsHistory, setOptionsHistory] = useState([]);
 
     const handleContentChange = (e) => {
         setQuestion({ ...question, content: e.target.value });
@@ -30,28 +31,37 @@ const CreateDialog = ({ onSave, onBack }) => {
     };
 
     const handleOptionClick = (index) => {
-        // Store current question in history
-        setHistory([...history, question]);
-
-        // Navigate to a new question for the clicked option (Recursion)
         const nextQuestion = question.options[index].nextQuestion || { content: '', options: [] };
+
+        // Store current question and options in history
+        setHistory([...history, question]);
+        setOptionsHistory([...optionsHistory, question.options]);
+
         setQuestion(nextQuestion);
     };
 
     const handleBack = () => {
-        // Retrieve previous question from history
-        const prevQuestion = history.pop() || { content: '', options: [] };
+        if (history.length === 0) return; // No previous history
+
+        // Retrieve previous question and options from history
+        const prevQuestion = history.pop();
+        const prevOptions = optionsHistory.pop();
+
         setQuestion(prevQuestion);
         setHistory([...history]); // Update history after removing the last element
+
+        // Restore previous options
+        if (prevOptions) {
+            const updatedQuestion = { ...prevQuestion };
+            updatedQuestion.options = prevOptions;
+            setQuestion(updatedQuestion);
+        }
     };
 
     const handleSave = () => {
-        // Save to localStorage
         const dialogs = JSON.parse(localStorage.getItem('dialogs')) || [];
         dialogs.push(question);
         localStorage.setItem('dialogs', JSON.stringify(dialogs));
-
-        // Trigger parent onSave callback
         onSave();
     };
 
