@@ -52,8 +52,8 @@ const DialogsList = () => {
           >
             <option value="">Все уровни</option>
             <option value="Easy">Легкий</option>
-            <option value="Medium">Середина</option>
-            <option value="Hard">Жесткий</option>
+            <option value="Medium">Средний</option>
+            <option value="Hard">Сложный</option>
           </select>
         </div>
 

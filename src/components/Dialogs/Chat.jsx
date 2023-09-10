@@ -105,24 +105,55 @@ const ChatRoom = () => {
     scrollToBottom();
   }, [messages]);
 
+    const [translationText, setTranslationText] = useState(null);
+
+  const fetchTranslation = async (text) => {
+    try {
+      const response = await fetch(`https://translate.tatar/translate?lang=1&text=${text}`);
+      const html = await response.text();
+      console.log(html)
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const translationElement = doc.querySelector('translation');
+
+      if (translationElement) {
+        setTranslationText(translationElement.textContent);
+      } else {
+        setTranslationText(html); // Use the original text if no translation element found
+      }
+    } catch (error) {
+      setTranslationText(text); // Use the original text if no translation element found
+      console.error('Error fetching translation:', error);
+    }
+  };
+
+  const handleMouseOver = (text) => {
+    fetchTranslation(text);
+  };
+
   return (
-    <div className="h-full p-20 flex flex-col items-center justify-center mt-6">
+      <div className="h-full p-20 flex flex-col items-center justify-center mt-6">
       <div className="w-full max-w-xl bg-white p-4 rounded-lg shadow-md border">
         <h1 className="text-2xl font-bold text-gray-700 mb-4">
           {selectedItem.title} 
           <div>(Очрашу)</div>
         </h1>
-
+        {translationText && (
+            <div className="bg-blue-100 p-2 rounded-md mb-4 text-gray-700">
+              Перевод: {translationText}
+            </div>
+        )}
         <div
           className="bg-gray-300 p-2 rounded-md mb-4"
           style={{ minHeight: "400px", maxHeight: "400px", overflowY: "auto" }}
         >
-          {/* Render chat messages */}
+
           {messages.map((message, index) => (
-            <div
-              key={index}
-              className={`mb-2`}
-            >
+              <div
+                  key={index}
+                  className={`mb-2`}
+                  onMouseOver={() => handleMouseOver(message.text)}
+              >
               <div
                 className={`flex items-center ${
                   message.id === "computer" ? "justify-start" : "justify-end"
@@ -184,6 +215,7 @@ const ChatRoom = () => {
                 key={option.text}
                 className="bg-blue-400 hover:bg-blue-600 text-sm text-white p-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
                 onClick={() => handleOptionClick(option.text)}
+                onMouseOver={() => handleMouseOver(option.text)}
               >
                 {option.text}
               </button>
