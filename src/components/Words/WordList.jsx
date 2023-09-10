@@ -42,12 +42,18 @@ const WordList = () => {
                 const response = await fetch(`https://translate.tatar/translate?lang=1&text=${word}`);
                 const data = await response.text();
                 // Extract the content from the translation tag
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(data, 'text/html');
-                const translationContent = doc.querySelector('translation').textContent;
+                try {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(data, 'text/html');
+                    const translationContent = doc.querySelector('translation').textContent;
 
-                setSelectedWord(word);
-                setTranslation(translationContent);
+                    setSelectedWord(word);
+                    setTranslation(translationContent);
+                } catch (error) {
+                    console.error('Error parsing translation:', error);
+                    setSelectedWord(word);
+                    setTranslation(data);
+                }
             } catch (error) {
                 console.error('Error fetching translation:', error);
                 setSelectedWord(null);
