@@ -58,11 +58,11 @@ const WordList = () => {
 
     return (
         <div className="max-w-screen-lg mx-auto p-4">
-            <h2 className="text-2xl font-semibold mb-4">Unique Words</h2>
+            <h2 className="text-2xl font-semibold mb-4">Выученные слова</h2>
             <div className="mb-4">
                 <input
                     type="text"
-                    placeholder="Search words..."
+                    placeholder="Поиск слов..."
                     className="border border-gray-300 p-2 rounded-lg"
                     value={filter}
                     onChange={handleFilterChange}
