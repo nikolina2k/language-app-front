@@ -1,8 +1,8 @@
 const items = [
     {
       id: '1',
-      title: 'The Enchanted Forest',
-      description: 'Explore the mystical forest where magic awaits at every turn.',
+      title: 'Зачарованный лес',
+      description: 'Исследуйте мистический лес, где волшебство ждет на каждом шагу.',
       voteCount: 10,
       level: 'Medium',
       category: 'Sci-Fi',
@@ -65,9 +65,9 @@ const items = [
     },
     {
       id: '9',
-      title: 'Quest for the Elixir of Immortality',
-      description: 'Embark on a perilous quest to discover the legendary elixir of eternal life.',
-      voteCount: 20,
+      title: 'В поисках эликсира бессмертия',
+      description: 'Отправьтесь в опасное путешествие, чтобы найти легендарный эликсир вечной жизни.',
+      voteCount: 2,
       level: 'Hard',
       category: 'Sci-Fi',
     },
@@ -81,8 +81,8 @@ const items = [
     },
     {
         id: '11',
-        title: 'Some Love story in park',
-        description: 'Write some description after you read dialog',
+        title: 'Случайная встреча',
+        description: 'В волшебном парке выбор Айше и Эмира вызывает волшебный роман.',
         voteCount: 18,
         level: 'Medium',
         category: 'Romance',

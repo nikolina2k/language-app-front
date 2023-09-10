@@ -1,165 +1,165 @@
 const storyData = {
     "park":
       {
-        "dialog": "The protagonist, Ayşe, was taking a walk in the city park. Suddenly, her eyes were drawn to a young man sitting on a bench, Emir. A romantic connection was beginning to form between Ayşe and Emir.",
+        "dialog": "Баш каһарман Айше шәһәр паркында сәяхәт итә иде. Кинәт аның күзләре эскәмиядә утырган Емирга юнәлде. Айше белән Эмир арасында романтик бәйләнеш барлыкка килә башлады.",
         "options": [
           {
             "option": "1",
-            "text": "I want to say hello to Emir and introduce myself.",
+            "text": "Эмир белән исәнләшеп, үземне таныштырасым килә.",
             "result": "introduce"
           },
           {
             "option": "2",
-            "text": "I'd like to smile politely at Emir.",
+            "text": "Мин Әмиргә әдәпле елмаярга телим.",
             "result": "smile"
           },
           {
             "option": "3",
-            "text": "I want to wait a bit longer before approaching Emir.",
+            "text": "Эмирга мөрәҗәгать итәр алдыннан бераз озак көтәргә телим.",
             "result": "wait"
           }
         ]
       },
       "introduce":
       {
-        "dialog": "Ayşe gathered her courage and approached Emir. She said, 'Hello, I'm Ayşe. What are you doing here?' They engaged in a short conversation, and as time passed, they grew closer to each other.",
+        "dialog": "Айше кыюлыгын җыйды һәм Эмир янына килде. Ул әйтте: 'Исәнмесез, мин Айше. Син монда нишлисең?' Алар кыска сөйләштеләр, вакыт узу белән алар бер-берсенә якынлаштылар.",
         "options": [
           {
             "option": "1",
-            "text": "I want to tell Emir more about myself.",
+            "text": "Мин Эмирга үзем турында күбрәк сөйләргә телим.",
             "result": "tell_more"
           },
           {
             "option": "2",
-            "text": "I'd like to ask Emir to share more about himself.",
+            "text": "Эмирдан үзе турында күбрәк сөйләвен сорыйсым килә.",
             "result": "ask_more"
           },
           {
             "option": "3",
-            "text": "I want to make a romantic gesture for Emir.",
+            "text": "Мин Эмир өчен романтик ишарә ясарга телим.",
             "result": "romantic_gesture"
           }
         ]
       },
       "smile":
       {
-        "dialog": "Ayşe smiled politely, and Emir responded with a smile. They made eye contact, and a romantic atmosphere began to develop.",
+        "dialog": "Айше әдәпле елмаеп җибәрде, ә Эмир елмаеп җавап бирде. Алар күз белән бәйләнделәр, романтик атмосфера үсә башлады.",
         "options": [
           {
             "option": "1",
-            "text": "I want to tell Emir more about myself.",
+            "text": "Мин Эмирга үзем турында күбрәк сөйләргә телим.",
             "result": "tell_more"
           },
           {
             "option": "2",
-            "text": "I'd like to ask Emir to share more about himself.",
+            "text": "Эмирдан үзе турында күбрәк сөйләвен сорыйсым килә.",
             "result": "ask_more"
           },
           {
             "option": "3",
-            "text": "I want to make a romantic gesture for Emir.",
+            "text": "Мин Эмир өчен романтик ишарә ясарга телим.",
             "result": "romantic_gesture"
           }
         ]
       },
       "wait":
       {
-        "dialog": "Ayşe decided to wait a little longer. Emir continued to look at her, expecting her to approach. They both seemed to be drawn to each other.",
+        "dialog": "Айше бераз озаграк көтәргә булды. Эмир аңа якынлашуын көтеп, аңа карауны дәвам итте. Алар икесе дә бер-берсенә тартылган кебек иде.",
         "options": [
           {
             "option": "1",
-            "text": "I want to say hello to Emir and introduce myself.",
+            "text": "Эмир белән исәнләшеп, үземне таныштырасым килә.",
             "result": "introduce"
           },
           {
             "option": "2",
-            "text": "I'd like to smile politely at Emir.",
+            "text": "Мин Әмиргә әдәпле елмаярга телим.",
             "result": "smile"
           },
           {
             "option": "3",
-            "text": "I want to wait a bit longer before approaching Emir.",
+            "text": "Эмирга мөрәҗәгать итәр алдыннан бераз озак көтәргә телим.",
             "result": "wait"
           }
         ]
       },
       "tell_more":
       {
-        "dialog": "As Ayşe and Emir spent more time together, their love continued to blossom. Their romantic outings in the park turned into adventurous journeys exploring the city, sharing laughter and dreams along the way.",
+        "dialog": "Айше белән Эмир бергә күбрәк вакыт үткәргәндә, аларның мәхәббәте чәчәк ата. Аларның парктагы романтик чыгышлары шәһәрне өйрәнү, көлү һәм хыяллар белән уртаклашу өчен авантюристик сәяхәткә әйләнде.",
         "options": [
           {
             "option": "1",
-            "text": "Ayşe and Emir decide to have their fortunes told.",
+            "text": "Айше белән Эмир үз бәхетләрен әйтергә карар итәләр.",
             "result": "fortunes_told"
           },
           {
             "option": "2",
-            "text": "They decide to politely decline and continue their day.",
+            "text": "Алар әдәпле рәвештә баш тартырга һәм көнен дәвам итәргә карар итәләр.",
             "result": "continue_day"
           }
         ]
       },
       "ask_more":
       {
-        "dialog": "Ayşe expressed her interest in learning more about Emir. Emir shared some details about himself, helping them get to know each other better. This conversation deepened their connection.",
+        "dialog": "Айше Эмир турында күбрәк белергә кызыксынуын белдерде. Эмир үзе турында кайбер детальләр белән уртаклашты, аларга бер-берсен яхшырак белергә булышты. Бу сөйләшү аларның бәйләнешен тирәнәйтте.",
         "options": [
           {
             "option": "1",
-            "text": "Ayşe and Emir decide to have their fortunes told.",
+            "text": "Айше белән Эмир үз бәхетләрен әйтергә карар итәләр.",
             "result": "fortunes_told"
           },
           {
             "option": "2",
-            "text": "They decide to politely decline and continue their day.",
+            "text": "Алар әдәпле рәвештә баш тартырга һәм көнен дәвам итәргә карар итәләр.",
             "result": "continue_day"
           }
         ]
       },
       "romantic_gesture":
       {
-        "dialog": "Ayşe decided to make a romantic gesture. She approached Emir with a flower and handed it to him with a smile. Emir, with eyes filled with happiness, thanked her for the sweet gesture. This romantic act further intensified the chemistry between them.",
+        "dialog": "Айше романтик ишарә ясарга булды. Ул чәчәк белән Эмир янына килде һәм аңа елмаеп бирде. Бәхет белән тулган Эмир аңа татлы ишарә өчен рәхмәт әйтте. Бу романтик акт алар арасындагы химияне тагын да көчәйтте.",
         "options": [
           {
             "option": "1",
-            "text": "Ayşe and Emir decide to have their fortunes told.",
+            "text": "Айше белән Эмир үз бәхетләрен әйтергә карар итәләр.",
             "result": "fortunes_told"
           },
           {
             "option": "2",
-            "text": "They decide to politely decline and continue their day.",
+            "text": "Алар әдәпле рәвештә баш тартырга һәм көнен дәвам итәргә карар итәләр.",
             "result": "continue_day"
           }
         ]
       },
       "fortunes_told":
       {
-        "dialog": "Curiosity got the best of Ayşe and Emir. They both agreed to have their fortunes told. The fortune teller took their hands, closed her eyes, and began to speak of their future together. She predicted a life filled with love, adventure, and happiness.",
+        "dialog": "Кызыксыну Айше белән Эмирның иң яхшысын алды. Алар икесе дә үз бәхетләрен әйтергә ризалаштылар. Күрәзәче кулларын алды, күзләрен йомды һәм бергә киләчәге турында сөйли башлады. Ул мәхәббәт, маҗаралар һәм бәхет белән тулган тормышны алдан әйтә.",
         "options": [
           {
             "option": "1",
-            "text": "They leave the tent with smiles on their faces, feeling even more connected and certain about their love for each other.",
+            "text": "Алар чатырдан йөзләренә елмаеп, тагын да бәйләнешле һәм бер-берсенә булган мәхәббәтләрен сизәләр.",
             "result": "happy_end"
           }
         ]
       },
       "continue_day":
       {
-        "dialog": "Ayşe and Emir politely declined the offer, believing that their love was already written in the stars. They continued their day, holding hands and cherishing the moments they shared.",
+        "dialog": "Айше һәм Эмир әдәплелек белән тәкъдимнән баш тарттылар, аларның мәхәббәте йолдызларда язылган дип ышанып. Алар кулларын тотып, бүлешкән мизгелләрне кадерләп, көннәрен дәвам иттеләр.",
         "options": [
           {
             "option": "1",
-            "text": "As time passed, their love story deepened, and they decided to take the next step in their relationship. They got engaged in a beautiful garden ceremony surrounded by friends and family, solidifying their commitment to each other.",
+            "text": "Вакыт узу белән аларның мәхәббәт тарихы тирәнәйде, һәм алар мөнәсәбәтләрендә чираттагы адым ясарга булдылар. Алар дуслар һәм туганнар белән әйләндереп алынган матур бакча тантанасында катнаштылар, бер-берсенә тугрылыкларын ныгыттылар.",
             "result": "engagement_end"
           }
         ]
       },
       "happy_end":
       {
-        "dialog": "No matter the path they chose, Ayşe and Emir's love story remained a testament to the power of love and the beautiful adventures that life could offer when two hearts came together as one."
+        "dialog": "Алар нинди генә юл сайласалар да, Айше белән Эмирның мәхәббәт тарихы мәхәббәт көченә һәм ике йөрәк берлектә тормыш тәкъдим итә алган матур маҗараларга васыять булып калды."
       },
       "engagement_end":
       {
-        "dialog": "No matter the path they chose, Ayşe and Emir's love story remained a testament to the power of love and the beautiful adventures that life could offer when two hearts came together as one."
+        "dialog": "Алар нинди генә юл сайласалар да, Айше белән Эмирның мәхәббәт тарихы мәхәббәт көченә һәм ике йөрәк берлектә тормыш тәкъдим итә алган матур маҗараларга васыять булып калды."
       }
 }
 

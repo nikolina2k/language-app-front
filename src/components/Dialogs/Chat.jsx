@@ -11,8 +11,9 @@ const ChatRoom = () => {
   // Find the item based on the item ID from the URL
   const selectedItem = items.find((item) => item.id === id);
 
-  if (!selectedItem) {
-    return <div>Item not found</div>;
+  if (id!=11) {
+
+    return <div className="mt-4">Story is being Written. Not Ready Yet!</div>;
   }
 
   const [messages, setMessages] = useState([]);
@@ -32,7 +33,7 @@ const ChatRoom = () => {
       };
 
       setMessages((prevMessages) => [...prevMessages, computerMessage]);
-    }, 2000);
+    }, 1500);
 
     return () => clearTimeout(typingTimer);
   }, []);
@@ -75,6 +76,7 @@ const ChatRoom = () => {
           setMessages((prevMessages) => [...prevMessages, computerMessage]);
         }
       }
+      
 
       // Show options again
       setOptionsVisible(true);
@@ -95,10 +97,11 @@ const ChatRoom = () => {
   }, [messages]);
 
   return (
-    <div className="h-full p-20 flex flex-col items-center justify-center mt-10">
+    <div className="h-full p-20 flex flex-col items-center justify-center mt-6">
       <div className="w-full max-w-xl bg-white p-4 rounded-lg shadow-md border">
         <h1 className="text-2xl font-bold text-gray-700 mb-4">
-          {selectedItem.title}
+          {selectedItem.title} 
+          <div>(Очрашу)</div>
         </h1>
 
         <div
@@ -166,11 +169,11 @@ const ChatRoom = () => {
 
         {/* Render user options */}
         {!isTyping && optionsVisible && (
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 gap-4">
             {getSceneData(currentScene).options && getSceneData(currentScene).options.map((option) => (
               <button
                 key={option.text}
-                className="bg-blue-400 hover:bg-blue-600 text-white p-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
+                className="bg-blue-400 hover:bg-blue-600 text-sm text-white p-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
                 onClick={() => handleOptionClick(option.text)}
               >
                 {option.text}

@@ -34,12 +34,12 @@ const DialogsList = () => {
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
           >
-            <option value="">All Categories</option>
-            <option value="Romance">Romance</option>
-            <option value="Horror">Horror</option>
-            <option value="Drama">Drama</option>
-            <option value="Action">Action</option>
-            <option value="Sci-Fi">Sci-Fi</option>
+            <option value="">Все категории</option>
+            <option value="Romance">Романтика</option>
+            <option value="Horror">Ужастик</option>
+            <option value="Drama">Драма</option>
+            <option value="Action">Действие</option>
+            <option value="Sci-Fi">Фантастика</option>
           </select>
         </div>
 
@@ -50,10 +50,10 @@ const DialogsList = () => {
             value={selectedLevel}
             onChange={(e) => setSelectedLevel(e.target.value)}
           >
-            <option value="">All Levels</option>
-            <option value="Easy">Easy</option>
-            <option value="Medium">Medium</option>
-            <option value="Hard">Hard</option>
+            <option value="">Все уровни</option>
+            <option value="Easy">Легкий</option>
+            <option value="Medium">Середина</option>
+            <option value="Hard">Жесткий</option>
           </select>
         </div>
 
