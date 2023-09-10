@@ -4,6 +4,8 @@ const WordList = () => {
     const [uniqueWords, setUniqueWords] = useState([]);
     const [filter, setFilter] = useState('');
     const [filteredWords, setFilteredWords] = useState([]);
+    const [selectedWord, setSelectedWord] = useState(null);
+    const [translation, setTranslation] = useState(null);
 
     useEffect(() => {
         // Retrieve the list of words from localStorage
@@ -29,13 +31,38 @@ const WordList = () => {
         setFilteredWords(filtered);
     };
 
+    // Handle word block click
+    const handleWordClick = async (word) => {
+        if (word === selectedWord) {
+            // If the same word is clicked again, clear the translation
+            setSelectedWord(null);
+            setTranslation(null);
+        } else {
+            try {
+                const response = await fetch(`https://translate.tatar/translate?lang=1&text=${word}`);
+                const data = await response.text();
+                // Extract the content from the translation tag
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(data, 'text/html');
+                const translationContent = doc.querySelector('translation').textContent;
+
+                setSelectedWord(word);
+                setTranslation(translationContent);
+            } catch (error) {
+                console.error('Error fetching translation:', error);
+                setSelectedWord(null);
+                setTranslation(null);
+            }
+        }
+    };
+
     return (
         <div className="max-w-screen-lg mx-auto p-4">
-            <h2 className="text-2xl font-semibold mb-4">Выученные слова</h2>
+            <h2 className="text-2xl font-semibold mb-4">Unique Words</h2>
             <div className="mb-4">
                 <input
                     type="text"
-                    placeholder="Искать слова..."
+                    placeholder="Search words..."
                     className="border border-gray-300 p-2 rounded-lg"
                     value={filter}
                     onChange={handleFilterChange}
@@ -45,9 +72,16 @@ const WordList = () => {
                 {filteredWords.map((word, index) => (
                     <div
                         key={index}
-                        className="bg-white p-4 rounded-lg shadow-md"
+                        className={`bg-white p-4 rounded-lg shadow-md cursor-pointer ${
+                            word === selectedWord ? 'border-2 border-blue-500' : ''
+                        }`}
+                        onClick={() => handleWordClick(word)}
                     >
-                        <p className="text-lg">{word}</p>
+                        {word === selectedWord ? (
+                            <div dangerouslySetInnerHTML={{ __html: translation }}></div>
+                        ) : (
+                            <p className="text-lg">{word}</p>
+                        )}
                     </div>
                 ))}
             </div>
