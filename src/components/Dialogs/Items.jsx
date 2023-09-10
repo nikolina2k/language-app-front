@@ -83,7 +83,7 @@ const items = [
         id: '11',
         title: 'Случайная встреча',
         description: 'В волшебном парке выбор Айше и Эмира вызывает волшебный роман.',
-        voteCount: 18,
+        voteCount: 20,
         level: 'Medium',
         category: 'Romance',
       },
