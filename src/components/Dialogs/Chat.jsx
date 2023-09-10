@@ -64,6 +64,14 @@ const ChatRoom = () => {
         if (selectedOption && selectedOption.result) {
           // Navigate to the next scene based on the selected option
           setCurrentScene(selectedOption.result);
+          if (currentScene && !currentScene.options){
+            const currentProgress = localStorage.getItem('progress');
+            const currentProgressNumber = parseInt(currentProgress, 10);
+            const randomIncrement = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+            const newProgress = currentProgressNumber + randomIncrement;
+            localStorage.setItem('progress', newProgress.toString());
+
+          }
 
           // // Simulate computer's response
           const computerMessage = {
@@ -82,6 +90,7 @@ const ChatRoom = () => {
 
     // Hide options temporarily
     setOptionsVisible(false);
+
   };
 
   const messagesEndRef = useRef(null);
@@ -134,8 +143,8 @@ const ChatRoom = () => {
                     <div className="bg-blue-200 p-2 rounded-lg max-w-[70%] break-words">
                       {message.text}
                     </div>
-                    <span role="img" 
-                          aria-label="Human Icon" 
+                    <span role="img"
+                          aria-label="Human Icon"
                           className="ml-2">
                       👤
                     </span>
