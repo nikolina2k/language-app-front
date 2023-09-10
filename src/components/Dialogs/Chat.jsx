@@ -13,7 +13,7 @@ const ChatRoom = () => {
 
   if (id!=11) {
 
-    return <div className="mt-4">История пишется. Еще не готов!</div>;
+    return <div className="mt-4">История пишется. Еще не готова!</div>;
   }
 
   const [messages, setMessages] = useState([]);
