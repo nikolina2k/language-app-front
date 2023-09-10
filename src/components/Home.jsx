@@ -10,9 +10,7 @@ const Home = () => {
     const maxProgress = localStorage.getItem("maxProgress");
 
     return (
-        <div
-            className="h-screen py-10 px-8 text-black"
-        >
+        <div className="h-screen py-10 px-8 text-sm text-black">
             <div className="flex justify-between">
                 <span className="text-5xl">Максим Матанцев</span>
                 <div
@@ -22,17 +20,17 @@ const Home = () => {
                     <span className="text-4xl">1</span>
                 </div>
             </div>
-            <div className="flex flex-col items-start">
-                <p className="text-4xl">Уровень {level}</p>
-                <ProgressBar maxValue={maxProgress} currentValue={progress}/>
-                <p className="text-xl">
+            <div className="flex flex-col items-start mt-8">
+                <p className="text-3xl">Уровень {level}</p>
+                <ProgressBar maxValue={maxProgress} currentValue={progress} barHeight="h-1" />
+                <p className="text-lg">
                     {progress}/{maxProgress} XP до следующего уровня
                 </p>
             </div>
-            <div className="flex flex-col mt-20" style={{gap:'25px'}}>
-              <ProfileCard link={"/dialogs-end"} title={'Завершеные диалоги'}/>
-              <ProfileCard link={'#'} title={'Созданные диалоги'}/>
-              <ProfileCard link={'#'} title={'Выученные слова'}/>
+            <div className="flex flex-col mt-10 space-y-6">
+                <ProfileCard link={"/dialogs-end"} title={"Завершеные диалоги"} />
+                <ProfileCard link={"#"} title={"Созданные диалоги"} />
+                <ProfileCard link={"#"} title={"Выученные слова"} />
             </div>
         </div>
     );
