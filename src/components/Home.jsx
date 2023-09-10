@@ -5,8 +5,10 @@ import ProgressBar from "./Profile/ProgressBar";
 import { ProgressContext } from "./context";
 
 const Home = () => {
+    const level = localStorage.getItem("level");
+    const progress = localStorage.getItem("progress");
+    const maxProgress = localStorage.getItem("maxProgress");
 
-    const {level, progress, maxProgress} = useContext(ProgressContext);
     return (
         <div
             className="h-screen py-10 px-8 text-black"
@@ -17,7 +19,7 @@ const Home = () => {
                     className="flex items-center justify-center"
                 >
                     <img src={streakIcon} alt="streak icon" />
-                    <span className="text-4xl">28</span>
+                    <span className="text-4xl">1</span>
                 </div>
             </div>
             <div className="flex flex-col items-start">
