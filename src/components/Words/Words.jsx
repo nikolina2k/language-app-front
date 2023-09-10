@@ -231,7 +231,7 @@ const Words = () => {
                     )}
                 </>
             ) : (
-                <div className="mt-4">
+                <div className="mt-20">
                     <h3 className="text-lg font-semibold">Итог теста:</h3>
                     <p className="text-green-500 font-semibold">{`Правильных ответов: ${correctAnswers} / ${totalWords}`}</p>
                     {incorrectWords.length > 0 && (
@@ -246,7 +246,7 @@ const Words = () => {
                     )}
                     <Link
                         to="/word"
-                        className="mt-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full"
+                        className="mt-4 inline-block bg-green-500 hover:bg-green-400 text-white font-semibold py-2 px-4 rounded-full"
                     >
                         Вернуться обратно
                     </Link>
