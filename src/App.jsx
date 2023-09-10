@@ -14,10 +14,10 @@ import WordList from "./components/Words/WordList.jsx";
 function App() {
     useEffect(() => {
         if (localStorage.getItem("level") === null) {
-          localStorage.setItem("level", 1);
+          localStorage.setItem("level", 23);
         }
         if (localStorage.getItem("progress") === null) {
-          localStorage.setItem("progress", 0);
+          localStorage.setItem("progress", 60);
         }
         if (localStorage.getItem("maxProgress") === null) {
           localStorage.setItem("maxProgress", 100);
