@@ -202,7 +202,7 @@ const Words = () => {
                         <div className="mt-4">
                             <button
                                 onClick={handleCheckAnswer}
-                                className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full"
+                                className="bg-green-500 hover:bg-green-400 text-white font-semibold py-2 px-4 rounded-full"
                             >
                                 Проверить ответ
                             </button>
@@ -220,14 +220,14 @@ const Words = () => {
                             {currentWordIndex + 1 < totalWords ? (
                                 <button
                                     onClick={handleNextWord}
-                                    className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full"
+                                    className="bg-green-500 hover:bg-green-400 text-white font-semibold py-2 px-4 rounded-full"
                                 >
                                     Следующее слово
                                 </button>
                             ) : (
                                 <button
                                     onClick={handleShowResults}
-                                    className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full"
+                                    className="bg-green-500 hover:bg-green-400 text-white font-semibold py-2 px-4 rounded-full"
                                 >
                                     Показать результаты
                                 </button>
